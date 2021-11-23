@@ -75,3 +75,16 @@ func entryNodeOfLoop(pHead *ListNode) *ListNode {
 	}
 	return s
 }
+
+// NC4 判断链表中是否有环
+func hasCycle(head *ListNode) bool {
+	var s, f = head, head
+	for f != nil && f.Next != nil && f.Next.Next != nil {
+		s, f = s.Next, f.Next.Next
+		if s == f {
+			return true
+		}
+	}
+
+	return false
+}
