@@ -58,3 +58,20 @@ func reorderList(head *ListNode) {
 		ptr, ptr.Next, end, end.Next = ptr.Next, end, end.Next, ptr.Next
 	}
 }
+
+// NC3 链表中环的入口结点
+func entryNodeOfLoop(pHead *ListNode) *ListNode {
+	var s, f = pHead, pHead
+	for {
+		s, f = s.Next, f.Next.Next
+		if s == f {
+			break
+		}
+	}
+
+	f = pHead
+	for s != f {
+		s, f = s.Next, f.Next
+	}
+	return s
+}
