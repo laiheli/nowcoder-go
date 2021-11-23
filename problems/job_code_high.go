@@ -33,3 +33,28 @@ func solve(s string, t string) string {
 
 	return string(res)
 }
+
+// NC2 重排链表
+func reorderList(head *ListNode) {
+	if head == nil {
+		return
+	}
+
+	// 找到中点
+	end, ptr := head, head
+	for ptr.Next != nil && ptr.Next.Next != nil {
+		end, ptr = end.Next, ptr.Next.Next
+	}
+
+	// 倒转链表
+	end, end.Next, ptr = end.Next, nil, nil
+	for end != nil {
+		end, end.Next, ptr = end.Next, ptr, end
+	}
+
+	// 合并链表
+	end, ptr = ptr, head
+	for end != nil {
+		ptr, ptr.Next, end, end.Next = ptr.Next, end, end.Next, ptr.Next
+	}
+}
