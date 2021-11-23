@@ -46,3 +46,9 @@ func (l *ListNode) Equal(list *ListNode) bool {
 	}
 	return l2 == nil
 }
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}

@@ -61,12 +61,20 @@ func reorderList(head *ListNode) {
 
 // NC3 链表中环的入口结点
 func entryNodeOfLoop(pHead *ListNode) *ListNode {
+	if pHead == nil || pHead.Next == nil {
+		return nil
+	}
+
 	var s, f = pHead, pHead
-	for {
+	for f != nil && f.Next != nil {
 		s, f = s.Next, f.Next.Next
 		if s == f {
 			break
 		}
+	}
+
+	if f == nil {
+		return nil
 	}
 
 	f = pHead
