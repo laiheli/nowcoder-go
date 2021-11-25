@@ -119,3 +119,34 @@ func sumNumbers(root *TreeNode) int {
 
 	return total
 }
+
+// NC6 二叉树中的最大路径和
+func maxPathSum(root *TreeNode) int {
+	var max = -1001
+	var maxNum = func(nums ...int) int {
+		if len(nums) == 0 {
+			return 0
+		}
+		m := nums[0]
+		for i := 1; i < len(nums); i++ {
+			if nums[i] > m {
+				m = nums[i]
+			}
+		}
+		return m
+	}
+	var dfs func(node *TreeNode) int
+	dfs = func(node *TreeNode) int {
+		if node != nil {
+			p, cl, cr := node.Val, dfs(node.Left), dfs(node.Right)
+			max = maxNum(max, maxNum(p, p+cl, p+cr, p+cl+cr))
+
+			return maxNum(p, p+cl, p+cr)
+		}
+		return 0
+	}
+
+	dfs(root)
+
+	return max
+}
