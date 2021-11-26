@@ -59,3 +59,10 @@ func BenchmarkMaxProfit(b *testing.B) {
 		maxProfit(arr)
 	}
 }
+
+// NC8 二叉树中和为某一值的路径(二)
+func BenchmarkFindPath(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		findPath(tree, 22)
+	}
+}

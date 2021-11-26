@@ -165,3 +165,31 @@ func maxProfit(prices []int) int {
 
 	return max
 }
+
+// NC8 二叉树中和为某一值的路径(二)
+func findPath(root *TreeNode, expectNumber int) [][]int {
+	var res [][]int
+	var dfs func(node *TreeNode, nums []int, sum int)
+	dfs = func(node *TreeNode, nums []int, sum int) {
+		if node != nil {
+			if node.Left == nil && node.Right == nil {
+				if sum+node.Val == expectNumber {
+					res = append(res, append(nums, node.Val))
+				}
+			} else {
+
+				if node.Left != nil {
+					dfs(node.Left, append(nums, node.Val), sum+node.Val)
+				}
+
+				if node.Right != nil {
+					dfs(node.Right, append(nums, node.Val), sum+node.Val)
+				}
+			}
+		}
+	}
+
+	dfs(root, []int{}, 0)
+
+	return res
+}
