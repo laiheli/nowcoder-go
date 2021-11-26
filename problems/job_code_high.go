@@ -193,3 +193,30 @@ func findPath(root *TreeNode, expectNumber int) [][]int {
 
 	return res
 }
+
+// NC9 二叉树中和为某一值的路径(一)
+func hasPathSum(root *TreeNode, sum int) bool {
+	var has bool
+	var dfs func(node *TreeNode, nums []int, total int)
+	dfs = func(node *TreeNode, nums []int, total int) {
+		if !has && node != nil {
+			if node.Left == nil && node.Right == nil {
+				if total+node.Val == sum {
+					has = true
+				}
+			} else {
+				if node.Left != nil {
+					dfs(node.Left, append(nums, node.Val), total+node.Val)
+				}
+
+				if node.Right != nil {
+					dfs(node.Right, append(nums, node.Val), total+node.Val)
+				}
+			}
+		}
+	}
+
+	dfs(root, []int{}, 0)
+
+	return has
+}

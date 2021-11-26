@@ -66,3 +66,10 @@ func BenchmarkFindPath(b *testing.B) {
 		findPath(tree, 22)
 	}
 }
+
+// NC9 二叉树中和为某一值的路径(一)
+func BenchmarkHasPathSum(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		hasPathSum(tree, 22)
+	}
+}
