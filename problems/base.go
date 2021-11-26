@@ -10,6 +10,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
+// NewListNode 切片转链表
 func NewListNode(nums []int) *ListNode {
 	var head, ptr *ListNode
 	for _, v := range nums {
@@ -25,15 +26,54 @@ func NewListNode(nums []int) *ListNode {
 
 }
 
+// NewCycleListNode 切片转带环链表
+func NewCycleListNode(nums []int, pos int) *ListNode {
+	var head, ptr, pPtr *ListNode
+
+	for k, v := range nums {
+		if ptr == nil {
+			ptr = &ListNode{v, nil}
+			head = ptr
+		} else {
+			ptr.Next = &ListNode{v, nil}
+			ptr = ptr.Next
+		}
+		if k == pos-1 {
+			pPtr = ptr
+		}
+	}
+
+	if ptr != nil {
+		ptr.Next = pPtr
+	}
+
+	return head
+
+}
+
 func (l *ListNode) String() string {
-	var data []string
+	var inCycle, entryNode = false, entryNodeOfLoop(l)
+	var res []string
+	var tmp string
 	var ptr = l
 
 	for ptr != nil {
-		ptr, data = ptr.Next, append(data, strconv.Itoa(ptr.Val))
+		tmp = ``
+		// 有环
+		if ptr == entryNode {
+			// 第二次遇到环入口，链表结束
+			if inCycle {
+				break
+			} else {
+				tmp = `->`
+				inCycle = true
+			}
+		}
+
+		ptr, res = ptr.Next, append(res, tmp+strconv.Itoa(ptr.Val))
 	}
 
-	return strings.Join(data, `,`)
+	return strings.Join(res, `,`)
 }
 
 func (l *ListNode) Equal(list *ListNode) bool {
