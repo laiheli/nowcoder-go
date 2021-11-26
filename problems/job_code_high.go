@@ -150,3 +150,18 @@ func maxPathSum(root *TreeNode) int {
 
 	return max
 }
+
+// NC7 买卖股票的最好时机(一)
+func maxProfit(prices []int) int {
+	min, max := 100000, 0
+	for _, v := range prices {
+		if max < v-min {
+			max = v - min
+		}
+		if min > v {
+			min = v
+		}
+	}
+
+	return max
+}
