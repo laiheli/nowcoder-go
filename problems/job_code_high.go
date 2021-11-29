@@ -220,3 +220,35 @@ func hasPathSum(root *TreeNode, sum int) bool {
 
 	return has
 }
+
+// NC10 大数乘法
+func solveMulti(s string, t string) string {
+	var sLen, tLen = len(s), len(t)
+	var nums = make([]uint8, sLen+tLen)
+	var res []byte
+	var offset int
+
+	for i := 0; i < sLen; i++ {
+		for j := 0; j < tLen; j++ {
+			nums[i+j] += (s[sLen-i-1] - '0') * (t[tLen-j-1] - '0')
+			offset = 0
+			for nums[i+j+offset] > 9 {
+				nums[i+j+offset+1] += nums[i+j+offset] / 10
+				nums[i+j+offset] %= 10
+				offset++
+			}
+		}
+	}
+
+	index := sLen + tLen - 1
+	if nums[index] == 0 {
+		index--
+	}
+
+	for index >= 0 {
+		res = append(res, nums[index]+'0')
+		index--
+	}
+
+	return string(res)
+}

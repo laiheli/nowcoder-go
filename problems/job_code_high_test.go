@@ -73,3 +73,10 @@ func BenchmarkHasPathSum(b *testing.B) {
 		hasPathSum(tree, 22)
 	}
 }
+
+// NC10 大数乘法
+func BenchmarkSolveMulti(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		solveMulti(`9999999999`, `9999999999`)
+	}
+}
