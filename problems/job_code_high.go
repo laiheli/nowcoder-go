@@ -241,7 +241,7 @@ func solveMulti(s string, t string) string {
 	}
 
 	index := sLen + tLen - 1
-	if nums[index] == 0 {
+	for nums[index] == 0 {
 		index--
 	}
 
