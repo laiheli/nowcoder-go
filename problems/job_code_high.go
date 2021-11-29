@@ -256,3 +256,19 @@ func solveMulti(s string, t string) string {
 
 	return string(res)
 }
+
+// NC11 将升序数组转化为平衡二叉搜索树
+func sortedArrayToBST(num []int) *TreeNode {
+	var l = len(num)
+	if l == 0 {
+		return nil
+	}
+
+	var root = &TreeNode{Val: num[l/2]}
+	if l > 1 {
+		root.Left = sortedArrayToBST(num[:l/2])
+		root.Right = sortedArrayToBST(num[l/2+1:])
+	}
+
+	return root
+}

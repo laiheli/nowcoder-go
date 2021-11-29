@@ -80,3 +80,10 @@ func BenchmarkSolveMulti(b *testing.B) {
 		solveMulti(`9999999999`, `9999999999`)
 	}
 }
+
+// NC11 将升序数组转化为平衡二叉搜索树
+func BenchmarkSortedArrayToBST(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		sortedArrayToBST(arr)
+	}
+}
