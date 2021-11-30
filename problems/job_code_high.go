@@ -284,6 +284,7 @@ func reConstructBinaryTree(pre []int, vin []int) *TreeNode {
 				if v == pre[0] {
 					node.Left = reConstructBinaryTree(pre[1:k+1], vin[:k])
 					node.Right = reConstructBinaryTree(pre[k+1:], vin[k+1:])
+					break
 				}
 			}
 		}
