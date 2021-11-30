@@ -272,3 +272,22 @@ func sortedArrayToBST(num []int) *TreeNode {
 
 	return root
 }
+
+// NC12 重建二叉树
+func reConstructBinaryTree(pre []int, vin []int) *TreeNode {
+	var node *TreeNode
+
+	if len(pre) > 0 {
+		node = &TreeNode{Val: pre[0]}
+		if len(pre) > 1 {
+			for k, v := range vin {
+				if v == pre[0] {
+					node.Left = reConstructBinaryTree(pre[1:k+1], vin[:k])
+					node.Right = reConstructBinaryTree(pre[k+1:], vin[k+1:])
+				}
+			}
+		}
+	}
+
+	return node
+}

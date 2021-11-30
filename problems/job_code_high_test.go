@@ -87,3 +87,11 @@ func BenchmarkSortedArrayToBST(b *testing.B) {
 		sortedArrayToBST(arr)
 	}
 }
+
+// NC12 重建二叉树
+func BenchmarkReConstructBinaryTree(b *testing.B) {
+	x, y := []int{1, 2, 4, 7, 3, 5, 6, 8}, []int{4, 7, 2, 1, 5, 3, 8, 6}
+	for i := 0; i < b.N; i++ {
+		reConstructBinaryTree(x, y)
+	}
+}
