@@ -95,3 +95,10 @@ func BenchmarkReConstructBinaryTree(b *testing.B) {
 		reConstructBinaryTree(x, y)
 	}
 }
+
+// NC13 二叉树的最大深度
+func BenchmarkMaxDepth(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		maxDepth(tree)
+	}
+}

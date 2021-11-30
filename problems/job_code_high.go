@@ -292,3 +292,19 @@ func reConstructBinaryTree(pre []int, vin []int) *TreeNode {
 
 	return node
 }
+
+// NC13 二叉树的最大深度
+func maxDepth(root *TreeNode) int {
+	var depth = 0
+
+	if root != nil {
+		var l, r = maxDepth(root.Left), maxDepth(root.Right)
+		if l > r {
+			depth = l + 1
+		} else {
+			depth = r + 1
+		}
+	}
+
+	return depth
+}
