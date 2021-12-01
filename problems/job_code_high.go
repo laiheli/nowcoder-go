@@ -346,3 +346,34 @@ func printTree(pRoot *TreeNode) [][]int {
 
 	return res
 }
+
+// NC15 求二叉树的层序遍历
+func levelOrder(root *TreeNode) [][]int {
+	if root == nil {
+		return nil
+	}
+
+	var res [][]int
+	var tmpRes []int
+	var stack = []*TreeNode{root}
+	var tmpStack []*TreeNode
+
+	for len(stack) > 0 {
+		tmpStack, tmpRes = make([]*TreeNode, 0), make([]int, len(stack))
+
+		for k, v := range stack {
+			tmpRes[k] = v.Val
+
+			if v.Left != nil {
+				tmpStack = append(tmpStack, v.Left)
+			}
+			if v.Right != nil {
+				tmpStack = append(tmpStack, v.Right)
+			}
+		}
+
+		stack, res = tmpStack, append(res, tmpRes)
+	}
+
+	return res
+}

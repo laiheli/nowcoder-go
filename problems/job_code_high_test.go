@@ -109,3 +109,10 @@ func BenchmarkPrintTree(b *testing.B) {
 		printTree(tree)
 	}
 }
+
+// NC15 求二叉树的层序遍历
+func BenchmarkLevelOrder(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		levelOrder(tree)
+	}
+}
