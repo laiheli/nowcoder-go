@@ -116,3 +116,10 @@ func BenchmarkLevelOrder(b *testing.B) {
 		levelOrder(tree)
 	}
 }
+
+// NC16 对称的二叉树
+func BenchmarkIsSymmetrical(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		isSymmetrical(tree)
+	}
+}

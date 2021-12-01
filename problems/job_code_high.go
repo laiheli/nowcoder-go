@@ -377,3 +377,19 @@ func levelOrder(root *TreeNode) [][]int {
 
 	return res
 }
+
+// NC16 对称的二叉树
+func isSymmetrical(pRoot *TreeNode) bool {
+	var isSame func(m, n *TreeNode) bool
+	isSame = func(m, n *TreeNode) bool {
+		if m == nil && n == nil {
+			return true
+		}
+		if m == nil || n == nil {
+			return false
+		}
+		return m.Val == n.Val && isSame(m.Left, n.Right) && isSame(m.Right, n.Left)
+	}
+
+	return isSame(pRoot, pRoot)
+}
