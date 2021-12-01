@@ -102,3 +102,10 @@ func BenchmarkMaxDepth(b *testing.B) {
 		maxDepth(tree)
 	}
 }
+
+// NC14 按之字形顺序打印二叉树
+func BenchmarkPrintTree(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		printTree(tree)
+	}
+}

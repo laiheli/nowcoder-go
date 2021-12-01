@@ -308,3 +308,41 @@ func maxDepth(root *TreeNode) int {
 
 	return depth
 }
+
+// NC14 按之字形顺序打印二叉树
+func printTree(pRoot *TreeNode) [][]int {
+	if pRoot == nil {
+		return nil
+	}
+
+	var res [][]int
+	var tmpRes []int
+	var stack = []*TreeNode{pRoot}
+	var tmpStack []*TreeNode
+	var directionLeft = true
+	var stackLen = 0
+
+	for len(stack) > 0 {
+		stackLen = len(stack)
+		tmpStack, tmpRes = make([]*TreeNode, 0), make([]int, stackLen)
+
+		for k, v := range stack {
+			if directionLeft {
+				tmpRes[k] = v.Val
+			} else {
+				tmpRes[stackLen-1-k] = v.Val
+			}
+
+			if v.Left != nil {
+				tmpStack = append(tmpStack, v.Left)
+			}
+			if v.Right != nil {
+				tmpStack = append(tmpStack, v.Right)
+			}
+		}
+
+		stack, res, directionLeft = tmpStack, append(res, tmpRes), !directionLeft
+	}
+
+	return res
+}
