@@ -393,3 +393,41 @@ func isSymmetrical(pRoot *TreeNode) bool {
 
 	return isSame(pRoot, pRoot)
 }
+
+// NC17 最长回文子串
+func getLongestPalindrome(A string) int {
+	var isPalindrome func(s string) bool
+	var sl, max = len(A), 0
+	if sl != 0 {
+		max = 1
+	}
+
+	isPalindrome = func(s string) bool {
+		if len(s) <= 1 {
+			return true
+		}
+
+		l, r := 0, len(s)-1
+		for l < r {
+			if s[l] != s[r] {
+				return false
+			}
+			l++
+			r--
+		}
+
+		return true
+	}
+
+	for i := 0; i < sl; i++ {
+		for j := i + 1; j < sl; j++ {
+			if isPalindrome(A[i : j+1]) {
+				if max < j-i+1 {
+					max = j - i + 1
+				}
+			}
+		}
+	}
+
+	return max
+}

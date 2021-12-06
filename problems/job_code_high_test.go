@@ -123,3 +123,10 @@ func BenchmarkIsSymmetrical(b *testing.B) {
 		isSymmetrical(tree)
 	}
 }
+
+// NC17 最长回文子串
+func BenchmarkGetLongestPalindrome(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		getLongestPalindrome(`abbba`)
+	}
+}
