@@ -429,3 +429,14 @@ func getLongestPalindrome(A string) int {
 
 	return len(A)
 }
+
+// NC18 顺时针旋转矩阵
+func rotateMatrix(mat [][]int, n int) [][]int {
+	for i := 0; i < n/2; i++ {
+		for j := i; j < n-1-i; j++ {
+			mat[i][j], mat[j][n-i-1], mat[n-1-i][n-1-j], mat[n-1-j][i] = mat[n-1-j][i], mat[i][j], mat[j][n-i-1], mat[n-1-i][n-1-j]
+		}
+	}
+
+	return mat
+}

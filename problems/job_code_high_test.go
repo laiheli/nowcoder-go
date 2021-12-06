@@ -130,3 +130,10 @@ func BenchmarkGetLongestPalindrome(b *testing.B) {
 		getLongestPalindrome(`abbba`)
 	}
 }
+
+// NC18 顺时针旋转矩阵
+func BenchmarkRotateMatrix(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		rotateMatrix([][]int{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}}, 4)
+	}
+}
