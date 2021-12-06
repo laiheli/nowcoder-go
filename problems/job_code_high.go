@@ -440,3 +440,22 @@ func rotateMatrix(mat [][]int, n int) [][]int {
 
 	return mat
 }
+
+// NC19 连续子数组的最大和
+func findGreatestSumOfSubArray(array []int) int {
+	var dp = make([]int, len(array)+1)
+	var max = -100000
+
+	for k, v := range array {
+		if dp[k] < 0 {
+			dp[k+1] = v
+		} else {
+			dp[k+1] = dp[k] + v
+		}
+		if max < dp[k+1] {
+			max = dp[k+1]
+		}
+	}
+
+	return max
+}

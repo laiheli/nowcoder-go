@@ -137,3 +137,10 @@ func BenchmarkRotateMatrix(b *testing.B) {
 		rotateMatrix([][]int{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}}, 4)
 	}
 }
+
+// NC19 连续子数组的最大和
+func BenchmarkFindGreatestSumOfSubArray(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		findGreatestSumOfSubArray(arr)
+	}
+}
